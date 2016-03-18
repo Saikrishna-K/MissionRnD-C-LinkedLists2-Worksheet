@@ -20,5 +20,34 @@ struct node {
 };
 
 struct node * insertAtEveryKthNode(struct node *head, int K) {
-	return NULL;
+
+	if (head == NULL || K < 1) return NULL;
+
+	int i = 1;
+	struct node *temp = head;
+
+
+
+	while (temp != NULL)
+	{
+		if (i == K)
+		{
+			struct node *newnode = (struct node *)calloc(1, sizeof(struct node));// creating new node for every entry.
+			newnode->num = K;
+			newnode->next = NULL;
+			newnode->next = temp->next;
+			temp->next = newnode;
+			temp = temp->next->next;
+			i = 1;  // after every insertion , making 'i' value to default for next Kth node counting.
+		}
+		else
+		{
+
+			temp = temp->next; i++;
+		}
+
+
+	}
+	
+	return head;
 }
